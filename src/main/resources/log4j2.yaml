@@ -1,0 +1,37 @@
+Configuration:
+  status: warn
+  name: Default
+
+  Properties:
+    Property:
+      - name: LOG_PATTERN
+        value: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5pid] - [%15.15t] %-40.40logger{39}:%-4L - %msg%n%throwable"
+      - name: HIGHLIGHTED_LOG_PATTERN
+        value: "[%highlight{%-5level}{FATAL=red, ERROR=red bold, WARN=yellow bold, INFO=green, DEBUG=green, TRACE=blue}]
+        %style{%d{yyyy-MM-dd HH:mm:ss.SSS}}{black} %style{%-5pid}{magenta} - [%15.15t] %style{%-40.40logger{39}}{cyan}:%-4L - %msg%n%throwable"
+      - name: DEFAULT_PATTERN
+        value: "%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint}
+        %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint}
+        %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan}
+        %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+
+  Appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      follow: true
+      PatternLayout:
+        Pattern: ${LOG_PATTERN}
+
+  Loggers:
+    Logger:
+      - name: mobi.fastgo.cloud
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+
+    Root:
+      level: info
+      AppenderRef:
+        - ref: STDOUT

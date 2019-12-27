@@ -1,0 +1,41 @@
+# serivce name
+spring:
+  application:
+    name: ${APPLICATION_NAME}
+  datasource:
+    driverClassName: ${DRIVER_CLASS_NAME}
+    url: ${STUDENT_MANAGEMT_URL}
+    username: ${DB_USER_NAME}
+    password: ${DB_PASS}
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO}
+      naming-strategy: ${NAMING_STRATEGY}
+    generate-ddl: ${GEN_AUTO}
+    show-sql: ${SHOW_SQL}
+    properties:
+      hibernate:
+        dialect: ${DIALECT}
+        format_sql: ${FORMAT_SQL}
+
+#Logging
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: ${LOGGER_DEBUG}
+        type:
+          descriptor:
+            sql:
+              BasicBinder: ${LOGGER_TRACE}
+
+# port
+server:
+  port: ${SERVER_PORT}
+
+# eureka server url
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://localhost:8761/eureka
+
